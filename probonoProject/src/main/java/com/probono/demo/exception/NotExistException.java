@@ -1,5 +1,11 @@
 package com.probono.demo.exception;
 
-public class NotExistException {
+public class NotExistException extends Exception {
+	
+	public NotExistException() {}
 
-}
+	public NotExistException(String message) {
+		super(message);
+	}
+}  
+  
