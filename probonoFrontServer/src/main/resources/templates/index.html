@@ -107,7 +107,7 @@
 				tableElement = tableElement + `</table>`;
 				document.getElementById("projectAllView").innerHTML = tableElement;
 			};
-			xhttp.open( "GET", "probonoProjectAll");
+			xhttp.open( "GET", "http://localhost:80/projects/probonoProjectAll");
 			xhttp.send();
 		}
 
@@ -177,7 +177,7 @@
 				alert(this.responseText);
 			};
 			
-			xhttp.open("POST", "activistInsert");
+			xhttp.open("POST", "http://localhost:80/users/activistInsert");
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			xhttp.send(insertQueryString);
 		}
@@ -203,7 +203,7 @@
 			document.getElementById("activistOneView").innerHTML = tableElement;
 		};
 		
-		xhttp.open( "GET", "activist?id="+v);
+		xhttp.open( "GET", "http://localhost:80/users/activist?id="+v);
 		xhttp.send();
 	}	
 	

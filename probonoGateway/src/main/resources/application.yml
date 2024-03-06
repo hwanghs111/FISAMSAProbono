@@ -3,6 +3,12 @@ server:
 spring:
   application:
     name: apigateway-service
+#  globalcors:
+#      cors-configurations:
+#        '[/**]':
+#          allowedOrigins: "https://docs.spring.io"
+#          allowedMethods:
+#          - GET
 
   cloud:
     gateway:
@@ -15,9 +21,3 @@ spring:
           uri: http://localhost:5556
           predicates:
             - Path=/projects/**
-    globalcors:
-      cors-configurations:
-        '[/**]':
-          allowedOrigins: "https://docs.spring.io"
-          allowedMethods:
-          - GET
