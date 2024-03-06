@@ -4,10 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.probono.demo.model.ProjectService;
 import com.probono.demo.model.dto.ProbonoProjectDTO;
 
+@RestController
+@RequestMapping("/projects")
 public class ProjectRestController {
 
 	@Autowired

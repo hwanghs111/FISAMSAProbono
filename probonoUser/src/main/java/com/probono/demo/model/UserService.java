@@ -70,17 +70,7 @@ public class UserService {
 
 	@Transactional
 
-	public boolean updateActivist(String activistId, String major) throws Exception {
 
-		notExistActivist(activistId);
-
-		int result = activistDAO.updateActivistByIdMajor(activistId, major);
-
-		if (result == 0) {
-			throw new NotExistException("재능 기부자 정보 갱신 실패");
-		}
-		return true;
-	}
 
 	public boolean deleteActivist(String activistId) throws Exception {
 		notExistActivist(activistId);

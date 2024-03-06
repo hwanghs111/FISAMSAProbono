@@ -118,6 +118,7 @@
 			const xhttp = new XMLHttpRequest();
 			xhttp.onload = function() {
 				let data = JSON.parse(this.responseText);
+				console.log("data = ", data);
 				
 				let tableElement =`
 					<table border="1">
@@ -134,7 +135,7 @@
 					tableElement = tableElement + `</table>`;
 				document.getElementById("allActivistView").innerHTML = tableElement;
 			};
-			xhttp.open("GET", "activistAll");
+			xhttp.open("GET", "http://localhost:80/users/activistAll");
 			xhttp.send();
 		}		
 			
