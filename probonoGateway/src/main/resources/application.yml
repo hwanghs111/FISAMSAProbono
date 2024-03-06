@@ -7,7 +7,7 @@ spring:
     gateway:
       routes:
         - id: userId
-          uri: http://localhost:555
+          uri: http://localhost:5555
           predicates:
             - Path=/payment/**
         - id: projectId
