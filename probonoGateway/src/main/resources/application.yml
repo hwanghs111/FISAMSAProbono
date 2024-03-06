@@ -6,4 +6,13 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: userId
+          uri: http://localhost:555
+          predicates:
+            - Path=/payment/**
+        - id: projectId
+          uri: http://localhost:5556
+          predicates:
+            - Path=/order/**
+    
         
