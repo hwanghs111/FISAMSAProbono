@@ -1,2 +1,22 @@
 server:
   port: 8761
+  address: 127.0.0.1
+
+spring:
+  application:
+    name: server
+  boot:  
+    admin:
+      context-path: /admin
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
