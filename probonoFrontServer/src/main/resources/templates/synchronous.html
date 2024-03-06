@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>재능 기부</title>
+</head>
+
+<style>
+	.waviy {
+		position: relative;
+		-webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0,0,0,.2));
+		font-size: 30px;
+		width: 300px;
+		height: 18px;
+		padding: 20px 20px;
+		text-align: center;
+	}
+	
+	.waviy span {
+		font-family: Impact;
+		position: relative;
+		display: inline-block;
+		color: rgb(0, 0, 0);
+		text-transform: uppercase;
+		animation: waviy 1s infinite;
+		animation-delay: calc(.1s * var(--i));
+	}
+	
+	@keyframes waviy {
+		0%,40%,100% {
+			transform: translateY(0)
+		}
+		20% {
+			transform: translateY(-20px)
+		}
+	}
+	
+	
+</style>
+
+<body>
+	<div class="waviy">
+         <span style="--i:1">F</span>
+         <span style="--i:2">I</span>
+         <span style="--i:3">S</span>
+         <span style="--i:4">A</span>  
+    </div>
+	<br><br><br>
+
+	<h3>동기 방식(웹페이지 이동)으로 모든 기부자 검색</h3>
+	<hr>
+	
+	<div id="allActivistView"></div>
+	<hr>
+	 <div id="activistOneView"></div>
+	
+
+
+    <script>
+        // Wait for the entire page to be loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            // Call the allActivistView() method when the page is loaded
+            allActivistView();
+        });
+
+        //2. 재능 기부 프로젝트에 참여중인 기부자 모두 검색
+        function allActivistView(){
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                let data = JSON.parse(this.responseText);
+                console.log("data = ", data);
+
+                let tableElement =`
+                    <table border="1">
+                    <tr><th>activist_id</th><th>name</th><th>major</th></tr>`;
+
+                for (let i in data){
+                    tableElement = tableElement + `<tr>
+                        <td><a href="#" onclick = "activistOneView('${data[i].id}')">${data[i].id}</a></td>
+                        <td>${data[i].name}</td>
+                        <td>${data[i].major}</td>
+                    </tr>`;
+                }
+
+                tableElement = tableElement + `</table>`;
+                document.getElementById("allActivistView").innerHTML = tableElement;
+            };
+            xhttp.open("GET", "http://localhost:80/users/activistAll");
+            xhttp.send();
+        } 
+        
+        function activistOneView(v){		
+            const xhttp = new XMLHttpRequest();		
+            xhttp.onload = function() {			
+                let data = JSON.parse(this.responseText);
+                let tableElement =`
+                    선택한 기부자 정보 <br>	
+                    <table border="1">
+                        <tr><th>activist_id</th><th>name</th><th>major</th></tr>
+                        <tr>
+                            <td>${data.id}</td>
+                            <td>${data.name}</td>
+                            <td>${data.major}</td>
+                        </tr>
+                    </table>`;
+                document.getElementById("activistOneView").innerHTML = tableElement;
+            };
+            xhttp.open("GET", "http://localhost:80/users/activist?id="+v);
+            xhttp.send();
+        } 
+    </script>
+
+    
+	<br>
+	
+</body>
+</html>

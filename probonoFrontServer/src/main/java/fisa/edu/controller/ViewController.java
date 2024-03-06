@@ -14,5 +14,10 @@ public class ViewController {
 		return "index";
 	}
 	
+	@GetMapping("/activistAllView")
+	public String synchronousForm() {
+		
+		return "synchronous";
+	}
 
 }
